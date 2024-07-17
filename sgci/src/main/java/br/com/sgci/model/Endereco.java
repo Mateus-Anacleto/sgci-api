@@ -42,9 +42,11 @@ public class Endereco {
 
 	@Column(name = "NUMERO")
 	private Integer numero;
+
+	public Endereco() {}
 	
-	
-	public Endereco(@Size(max = 8) String cep, 
+	public Endereco(
+			@Size(max = 8) String cep, 
 			@Size(max = 255) String estado, 
 			@Size(max = 255) String cidade,
 			@Size(max = 255) String rua, 
@@ -59,7 +61,6 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}

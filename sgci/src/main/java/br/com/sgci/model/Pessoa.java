@@ -1,5 +1,6 @@
 package br.com.sgci.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -23,12 +24,12 @@ public class Pessoa {
 	private Long id;
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_ENDERECO")
 	private Endereco endereco;
 
 	@NotNull
-	@Size(max = 8)
+	@Size(max = 255)
 	@Column(name = "NOME")
 	private String nome;
 
@@ -49,14 +50,16 @@ public class Pessoa {
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	@Column(name = "ESTADO_CIVIL")
+	@Column(name = "EN_ESTADO_CIVIL")
 	private EstadoCivilEnum estadoCivil;
+
+	public Pessoa() {}
 	
-	
-	public Pessoa(@NotNull Endereco endereco, 
-			@NotNull @Size(max = 8) String nome, 
+	public Pessoa(
+			@NotNull Endereco endereco,
+			@NotNull @Size(max = 255) String nome,
 			@NotNull TipoPessoaEnum tipo,
-			@NotNull @Size(max = 255) String documento, 
+			@NotNull @Size(max = 255) String documento,
 			@NotNull @Size(max = 255) String profissao,
 			@NotNull EstadoCivilEnum estadoCivil) {
 		super();
@@ -68,7 +71,6 @@ public class Pessoa {
 		this.estadoCivil = estadoCivil;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}

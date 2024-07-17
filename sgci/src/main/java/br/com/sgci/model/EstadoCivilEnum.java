@@ -1,9 +1,7 @@
 package br.com.sgci.model;
 
-public enum EstadoCivilEnum {
-	SOLTEIRO, 
+public enum EstadoCivilEnum { 
 	CASADO,
-	DIVORCIADO,
-	VIUVO
-	
+	SOLTEIRO,
+	DIVORCIADO
 }
