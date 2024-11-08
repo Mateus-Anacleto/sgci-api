@@ -13,7 +13,7 @@ public class SwaggerConfig {
 	public OpenAPI customOpenAPI() {
 		return new OpenAPI()
 				.info(new Info()
-						.title("SGCI - Sistema Genrenciador de Cadastro Imobiliário")
+						.title("SGCI - Sistema Gerenciador de Cadastro Imobiliário")
 						.version("1.0.0"));
 	}
 }
