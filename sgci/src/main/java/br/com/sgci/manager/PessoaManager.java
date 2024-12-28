@@ -1,6 +1,10 @@
 package br.com.sgci.manager;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
+import com.opencsv.CSVWriter;
+import com.opencsv.ICSVWriter;
 
 import br.com.sgci.controller.schema.EnderecoMapper;
 import br.com.sgci.controller.schema.EnderecoResponse;
@@ -162,6 +169,31 @@ public class PessoaManager {
 		PessoaResponse pessoaResponse = PessoaMapper.INSTANCE.toPessoaResponse(pessoa, enderecoResponse);
 		
 		return pessoaResponse;
+	}
+	
+	public String exportarParaBase64() {
+		List<Pessoa> listaPessoasBd = pessoaRepository.findAll();
+		try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+				CSVWriter csvWriter = new CSVWriter(writer, ICSVWriter.DEFAULT_SEPARATOR, // Separador de campos no CSV
+																							// (por padrão, vírgula)
+						ICSVWriter.NO_QUOTE_CHARACTER, // Nenhum caractere de citação será usado
+						ICSVWriter.DEFAULT_ESCAPE_CHARACTER, // Caractere de escape padrão
+						ICSVWriter.DEFAULT_LINE_END); // Final de linha padrão (por exemplo, "\r\n")
+		) {
+			String[] header = { "Nome", "Documento", "Profissao", "Estado Civil" };
+			csvWriter.writeNext(header);
+			listaPessoasBd.forEach(it -> {
+				String[] data = { it.getNome(), it.getDocumento(), it.getProfissao(), it.getTipo().name() };
+				csvWriter.writeNext(data);
+			});
+			
+			writer.flush();
+			
+			return Base64.getEncoder().encodeToString(outputStream.toByteArray());
+		} catch (IOException e) {
+			throw new RuntimeException("Erro ao exportar para Base64", e);
+		}
 	}
 	
 	

@@ -53,12 +53,15 @@ public class PessoaController {
 		return ResponseEntity.ok(pessoa.getId());
 	}
 	
-	
 	@DeleteMapping(path = {"{idPessoa}"})
 	public ResponseEntity<Long> deletePessoa(@PathVariable Long idPessoa) {
 		pessoaManager.deletePessoa(idPessoa);
 		return ResponseEntity.ok().build();
 	}
 	
+	@GetMapping("/exportar-csv")
+	 public ResponseEntity<String> exportarCSV() {
+	     return ResponseEntity.ok(pessoaManager.exportarParaBase64());
+	 }
 	
 }
