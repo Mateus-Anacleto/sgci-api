@@ -13,10 +13,11 @@ Possui módulos de: Gerenciamento de pessoas (jurídica e física), gerenciament
 
 ## 🛠️ Linguagens e Ferramentas:
 - ☕ Java
+- 🎲 MySQL
 - 🍃 Spring Framework
 - 🧪 JUnit 5
 - 💻 Eclipse IDE
-- 🎲 DBeaver
+- 💾 DBeaver
 - 📂 Swagger
 - 🗺️ MapStruct
 - 📬 Postman
