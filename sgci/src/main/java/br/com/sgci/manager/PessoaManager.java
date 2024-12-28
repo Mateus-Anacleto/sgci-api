@@ -72,6 +72,10 @@ public class PessoaManager {
 			
 			List<Predicate> condicoes = new ArrayList<>();
 			
+			if(filtros.getId() != null) {
+				condicoes.add(cb.equal(root.get("id"), filtros.getId()));
+			}
+			
 			if(filtros.getNome() != null) {
 				condicoes.add(cb.like(root.get("nome"), "%" + filtros.getNome() + "%"));
 			}
@@ -89,11 +93,19 @@ public class PessoaManager {
 			}
 			
 			if(filtros.getTipo() != null) {
-				condicoes.add(cb.equal(root.get("tipo"),filtros.getTipo()));
+				condicoes.add(cb.like(root.get("tipo"), "%" + filtros.getTipo() + "%"));
 			}
 			
 			if(filtros.getDocumento() != null) {
 				condicoes.add(cb.equal(root.get("documento"),filtros.getDocumento()));
+			}
+			
+			if(filtros.getProfissao() != null) {
+				condicoes.add(cb.like(root.get("profissao"), "%" + filtros.getProfissao() + "%"));
+			}
+			
+			if(filtros.getEstadoCivil() != null) {
+				condicoes.add(cb.equal(root.get("estadoCivil"), filtros.getEstadoCivil()));
 			}
 			
 			return cb.and(condicoes.toArray(Predicate[]::new));
@@ -113,7 +125,7 @@ public class PessoaManager {
 		});
 		
 		return new ResponsePagedCommon<PessoaResponse>(listResponse, listPessoaBd.getTotalElements(), 
-				listPessoaBd.getTotalPages(), filtros.getSize());
+				listPessoaBd.getTotalPages(), filtros.getSize(), filtros.getPage());
 		
 	}
 	

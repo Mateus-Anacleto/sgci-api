@@ -8,13 +8,15 @@ public class ResponsePagedCommon<T> {
 	private Long totalRecords;
 	private int totalPages;
 	private int pageSize;
+	private int page;
 	
 	
-	public ResponsePagedCommon(List<T> data, Long totalRecords, int totalPages, int pageSize) {
+	public ResponsePagedCommon(List<T> data, Long totalRecords, int totalPages, int pageSize, int page) {
 		this.data = data;
 		this.totalRecords = totalRecords;
 		this.totalPages = totalPages;
 		this.pageSize = pageSize;
+		this.page = page;
 	}
 	
 	
@@ -41,6 +43,12 @@ public class ResponsePagedCommon<T> {
 	}
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
 	}
 	
 		
