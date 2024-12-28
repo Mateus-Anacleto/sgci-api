@@ -1,4 +1,4 @@
-# ⚙️ Projeto SGCI - Sistema Gerenciador de Cadastro Imobiliário ⚙️<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(Back-End)
+# ⚙️ Projeto SGCI - Sistema Gerenciador de Cadastro Imobiliário (Back-End)⚙️
 
 O SGCI é uma solução inovadora que simplifica a gestão de cadastros imobiliários para organizações públicas e privadas. Focado na praticidade e eficiência, o sistema permite centralizar e organizar informações sobre propriedades, facilitando processos como consultas, atualizações e análises cadastrais. Com uma interface intuitiva e moderna, o SGCI transforma tarefas complexas em operações ágeis e acessíveis.<br><br>
 Possui módulos de: Gerenciamento de pessoas (jurídica e física), gerenciamento de imóveis (rurais e urbanos), gerenciamento de acessos (usuários).
